@@ -7,7 +7,7 @@ export default function Home() {
   const [latitude, setLat] = useState(0)
   const [longitude, setLong] = useState(0)
   async function runFlight() {
-    const response =  axios.fetch()
+    
   }
   
   return (

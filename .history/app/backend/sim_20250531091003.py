@@ -1,4 +1,4 @@
-from rocketpy import Environment, SolidMotor, Rocket, Flight
+import rocketpy.Environment
 import datetime
 import openpyxl
  
@@ -16,7 +16,7 @@ env.set_atmospheric_model(type="Forecast", file = "GFS")
 print("Creating motor....\n")
 H97J6 = SolidMotor(
     # MUST CHANGE USER FOR YOURSELF (and probably path too)
-    thrust_source= "./ReferencedFiles/AeroTech_M1850W.eng",
+    thrust_source= "C:\\Users\\mahd\\Documents\\RocketPyWebsite\\AeroTech_M1850W.eng",
     dry_mass=0.141,
     dry_inertia=(0, 0, 0),
     nozzle_radius= 0.001,
@@ -39,8 +39,8 @@ l1Rocket = Rocket(
     radius= 0.0381,
     mass= 1.464,
     inertia=(3.321, 4.321, 0.024),
-    power_off_drag="./ReferencedFiles/L1MotorOn.csv",
-    power_on_drag="./ReferencedFiles/L1MotorOff.csv",
+    power_off_drag="C:\\Users\\mahd\\Documents\\SimulationRocketPy\\L1MotorOn.csv",
+    power_on_drag="C:\\Users\\mahd\\Documents\\SimulationRocketPy\\L1MotorOff.csv",
     center_of_mass_without_motor=0,
     coordinate_system_orientation="tail_to_nose",
 )

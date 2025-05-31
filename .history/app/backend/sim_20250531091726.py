@@ -39,8 +39,8 @@ l1Rocket = Rocket(
     radius= 0.0381,
     mass= 1.464,
     inertia=(3.321, 4.321, 0.024),
-    power_off_drag="./ReferencedFiles/L1MotorOn.csv",
-    power_on_drag="./ReferencedFiles/L1MotorOff.csv",
+    power_off_drag="C:\\Users\\mahd\\Documents\\SimulationRocketPy\\L1MotorOn.csv",
+    power_on_drag="C:\\Users\\mahd\\Documents\\SimulationRocketPy\\L1MotorOff.csv",
     center_of_mass_without_motor=0,
     coordinate_system_orientation="tail_to_nose",
 )
