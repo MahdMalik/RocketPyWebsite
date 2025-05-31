@@ -2,12 +2,21 @@
 import Image from "next/image";
 import { Button, Stack, TextField } from "@mui/material";
 import { useState } from "react";
+import axios from "axios";
 
 export default function Home() {
   const [latitude, setLat] = useState(0)
   const [longitude, setLong] = useState(0)
   async function runFlight() {
-    const response =  axios.fetch()
+    const response =  await axios.post("http://localhost:" + process.env.NEXT_PUBLIC_PYTHON_PORT + "/python/test", {
+      input: "AAAA"
+    })
+    const data = response.data
+    if(data.success)
+    {
+      alert(data.message)
+    }
+    
   }
   
   return (
