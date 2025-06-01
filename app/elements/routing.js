@@ -16,7 +16,7 @@ export const useRouting = () => {
     }
 
     const goToMain = async() => {
-        router.push("/")
+        router.push("/main")
     }
 
     return {goToLogin, goToRegister, goToLandingPage, goToMain}

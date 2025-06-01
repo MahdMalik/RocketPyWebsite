@@ -3,10 +3,13 @@ import Image from "next/image";
 import { Button, Stack, TextField } from "@mui/material";
 import { useState } from "react";
 import axios from "axios";
+import { SignedIn, UserButton, SignedOut } from "@clerk/nextjs";
+import { useRouting } from "../elements/routing";
 
 export default function Home() {
   const [latitude, setLat] = useState(0)
   const [longitude, setLong] = useState(0)
+  const {goToLandingPage} = useRouting()
   async function runFlight() {
     const response =  await axios.post("http://localhost:" + process.env.NEXT_PUBLIC_PYTHON_PORT + "/python/test", {
       input: "AAAA"
@@ -21,6 +24,16 @@ export default function Home() {
   
   return (
     <Stack spacing = {5}>
+      <SignedIn>
+        <UserButton/>
+        <Button variant="contained" onClick={goToLandingPage}>Home</Button>
+        </SignedIn>
+      <SignedOut>{
+      () => {
+        goToLandingPage();
+        return null;
+      }}
+      </SignedOut>
       <Stack direction="row" spacing = {2}>
         <div></div>
         <Button sx={{ backgroundColor: 'red', color: 'white', '&:hover': { backgroundColor: 'darkRed' } }}>
