@@ -1,5 +1,6 @@
 import { useRouter } from "next/navigation"
 
+//these just store functions to go to different pages, so i don't have to rewrite code
 export const useRouting = () => {
     const router = useRouter()
   

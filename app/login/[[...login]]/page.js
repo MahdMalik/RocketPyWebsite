@@ -10,6 +10,7 @@ export default function Login()
     
     return (
         <div>
+            {/**if signed in,don't want them to access this page, send them to main */}
             <SignedIn>
             {() => {
                 goToMain()
@@ -17,6 +18,7 @@ export default function Login()
             }}
             </SignedIn>
 
+            {/* Otherwise, give them objeccts to go to different pages, and then also have the sign in embedded in */}
             <Button variant="contained" onClick={goToLandingPage}>Home</Button>
             <Button variant="contained" onClick={goToRegister}>Register</Button>
             <SignIn signInForceRedirectUrl="/main"/>

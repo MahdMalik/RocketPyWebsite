@@ -10,6 +10,7 @@ export default function Home() {
   const [latitude, setLat] = useState(0)
   const [longitude, setLong] = useState(0)
   const {goToLandingPage} = useRouting()
+  //for now, just checks to see if the python communication works
   async function runFlight() {
     const response =  await axios.post("http://localhost:" + process.env.NEXT_PUBLIC_PYTHON_PORT + "/python/test", {
       input: "AAAA"
@@ -24,10 +25,12 @@ export default function Home() {
   
   return (
     <Stack spacing = {5}>
+      {/* if signed in, have the user button displayed and button to go to landing page */}
       <SignedIn>
         <UserButton/>
         <Button variant="contained" onClick={goToLandingPage}>Home</Button>
         </SignedIn>
+      {/* If signed out, don't want user here, send them back.*/}
       <SignedOut>{
       () => {
         goToLandingPage();

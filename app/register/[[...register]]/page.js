@@ -10,6 +10,7 @@ export default function Register()
 
     return (
         <div>
+            {/* If they're signed in, don't want them on this page, so send them back */}
             <SignedIn>
             {() => {
                 goToMain()
@@ -17,6 +18,7 @@ export default function Register()
             }}
             </SignedIn>
 
+            {/* Otherwise, display sign uup prompt and such. */}
             <Button variant="contained" onClick={goToLandingPage}>Home</Button>
             <Button variant="contained" onClick={goToLogin}>Log In</Button>
             <SignUp signInForceRedirectUrl="/main"/>

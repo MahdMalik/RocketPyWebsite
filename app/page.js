@@ -10,10 +10,12 @@ export default function LandingPage()
   
   return (
         <div>
+            {/* If signed in, give them access to the dashboard page to run sims */}
             <SignedIn>
               <UserButton/>
               <Button variant="contained" onClick={goToMain}>To Dashboard</Button>
-              </SignedIn>
+            </SignedIn>
+            {/* If signed out, give them ability to go login or register*/}
             <SignedOut>
             <Button variant="contained" onClick={goToLogin}>Login</Button>
             <Button variant="contained" onClick={goToRegister}>Register</Button>
