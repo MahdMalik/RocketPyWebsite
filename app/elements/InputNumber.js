@@ -6,12 +6,12 @@ const InputNumber = ({inputName, setInputObj}) => {
 
     return (
         <Stack direction="row" spacing = {2}>
-        <div></div>
         <p>{inputName}</p>
         <TextField
           value={value}
           onChange={(e) => {
             setValue(e.target.value)
+            //changing the new value of it
             setInputObj((prev) => {
               return {...prev, [inputName]: e.target.value}
             })
