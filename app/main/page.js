@@ -1,15 +1,44 @@
 'use client'
 import Image from "next/image";
 import { Button, Stack, TextField } from "@mui/material";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
-import { SignedIn, UserButton, SignedOut } from "@clerk/nextjs";
+import { SignedIn, UserButton, SignedOut, useUser, getToken, useAuth } from "@clerk/nextjs";
 import { useRouting } from "../elements/routing";
 
 export default function Home() {
   const [latitude, setLat] = useState(0)
   const [longitude, setLong] = useState(0)
   const {goToLandingPage} = useRouting()
+  const {user} = useUser()
+  const {getToken} = useAuth()
+
+  useEffect(() => {
+    if(!user)
+    {
+      return
+    }
+    
+    const getUserData = async() => {
+      const token = await getToken();
+      if(!token)
+      {
+        return
+      }
+      console.log(user)
+
+      //going to then send the user id to a database with axios.post
+      const response = await axios.post("/api/database", {
+        id: user.id,
+        token: token
+      })
+      console.log(response.data)
+    }
+    
+    getUserData()
+
+  }, [user])
+
   //for now, just checks to see if the python communication works
   async function runFlight() {
     const response =  await axios.post("http://localhost:" + process.env.NEXT_PUBLIC_PYTHON_PORT + "/python/test", {
