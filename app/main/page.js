@@ -4,12 +4,13 @@ import { Button, Stack, TextField } from "@mui/material";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { SignedIn, UserButton, SignedOut, useUser, getToken, useAuth } from "@clerk/nextjs";
-import { useRouting } from "../elements/routing";
+import { Logout, useRouting } from "../elements/routing";
+import FlightInput from "../elements/SimpleFlight";
 
 export default function Home() {
   const [latitude, setLat] = useState(0)
   const [longitude, setLong] = useState(0)
-  const {goToLandingPage} = useRouting()
+  const {goToLandingPage, logout} = useRouting()
   const {user} = useUser()
   const {getToken} = useAuth()
 
@@ -21,7 +22,7 @@ export default function Home() {
     
     const getUserData = async() => {
       const token = await getToken();
-      if(!token)
+      if(!token || localStorage.getItem("user-data") != null)
       {
         return
       }
@@ -64,13 +65,10 @@ export default function Home() {
         <Button variant="contained" onClick={goToLandingPage}>Home</Button>
         </SignedIn>
       {/* If signed out, don't want user here, send them back.*/}
-      <SignedOut>{
-      () => {
-        goToLandingPage();
-        return null;
-      }}
-      </SignedOut>
-      <Stack direction="row" spacing = {2}>
+      <SignedOut><Logout/></SignedOut>
+      <FlightInput/>
+      
+      {/* <Stack direction="row" spacing = {2}>
         <div></div>
         <Button sx={{ backgroundColor: 'red', color: 'white', '&:hover': { backgroundColor: 'darkRed' } }}>
           DISABLE
@@ -98,7 +96,7 @@ export default function Home() {
           value={longitude}
           onChange={(e) => setLong(e.target.value)}>
         </TextField>
-      </Stack>
+      </Stack> */}
       <Button onClick={runFlight}>Click to run sim</Button>
     </Stack>
   );

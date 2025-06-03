@@ -2,7 +2,7 @@
 
 import { Button } from "@mui/material"
 import { useRouter } from "next/navigation"
-import { useRouting } from "./elements/routing"
+import { useRouting, Logout } from "./elements/routing"
 import { SignedIn, SignedOut, UserButton } from "@clerk/nextjs"
 export default function LandingPage()
 {
@@ -17,6 +17,7 @@ export default function LandingPage()
             </SignedIn>
             {/* If signed out, give them ability to go login or register*/}
             <SignedOut>
+            <Logout/>
             <Button variant="contained" onClick={goToLogin}>Login</Button>
             <Button variant="contained" onClick={goToRegister}>Register</Button>
             </SignedOut>
