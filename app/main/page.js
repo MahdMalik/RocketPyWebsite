@@ -26,9 +26,11 @@ export default function Home() {
         return
       }
 
+      console.log(user)
+
       //going to then send the user id to a database with axios.post
       const response = await axios.post("/api/database", {
-        id: user.id,
+        user: user,
         token: token
       })
       console.log(response.data)
