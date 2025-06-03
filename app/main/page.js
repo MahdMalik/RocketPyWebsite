@@ -33,7 +33,10 @@ export default function Home() {
         user: user,
         token: token
       })
-      console.log(response.data)
+
+      const username = response.data
+
+      localStorage.setItem("user-data", JSON.stringify({name: username}))
     }
     
     getUserData()
