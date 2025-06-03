@@ -20,8 +20,10 @@ export default function Home() {
       return
     }
     
+    //first send token to backend, from there get the username, and save that into local storage
     const getUserData = async() => {
       const token = await getToken();
+      //if they already have data, don't call the database
       if(!token || localStorage.getItem("user-data") != null)
       {
         return

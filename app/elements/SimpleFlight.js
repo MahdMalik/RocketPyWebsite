@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import InputNumber from "./InputNumber"
 
 const FlightInput = () => {
@@ -6,7 +6,8 @@ const FlightInput = () => {
     
     return (
         <div>
-            <InputNumber inputName={"latitude"} inputValue={inputObj.latitude}/>
+            <InputNumber inputName="latitude" setInputObj={setInputObj}/>
+            <InputNumber inputName="longitude" setInputObj={setInputObj}/>
         </div>
     )
 }

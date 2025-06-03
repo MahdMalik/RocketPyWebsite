@@ -1,19 +1,20 @@
 import { useState } from "react"
 import { Stack, Button, TextField } from "@mui/material"
 
-const InputNumber = ({inputName, inputValue}) => {
-    const [name, setName] = useState(inputName)
+const InputNumber = ({inputName, setInputObj}) => {
     const [value, setValue] = useState(0)
 
     return (
         <Stack direction="row" spacing = {2}>
         <div></div>
-        <p>{name}</p>
+        <p>{inputName}</p>
         <TextField
           value={value}
           onChange={(e) => {
             setValue(e.target.value)
-            inputValue = value
+            setInputObj((prev) => {
+              return {...prev, [inputName]: e.target.value}
+            })
           }}>
         </TextField>
       </Stack>
