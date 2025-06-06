@@ -26,6 +26,8 @@ if __name__ == '__main__':
 # )  # Hour given in UTC time
 # env.set_atmospheric_model(type="Forecast", file = "GFS")
 # # env.info()
+
+
 # print("Creating motor....\n")
 # H97J6 = SolidMotor(
 #     # MUST CHANGE USER FOR YOURSELF (and probably path too)

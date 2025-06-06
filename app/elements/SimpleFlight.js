@@ -1,21 +1,26 @@
 import { useEffect, useState } from "react"
 import InputNumber from "./InputNumber"
 import ToggleOption from "./ToggleOption"
+import DateGetter from "./DateGetter";
 
 const FlightInput = () => {
     const [inputObj, setInputObj] = useState({})
+
     
     return (
         <div>
-            <ToggleOption inputName="Set Environment" setInputObj={setInputObj}/>
-            {/* If going to use environment that's not standard, enable that here */}
-            {inputObj["Set Environment"] && ( 
-                <div>
-                    <InputNumber inputName="latitude" setInputObj={setInputObj}/>
-                    <InputNumber inputName="longitude" setInputObj={setInputObj}/>
-                    <InputNumber inputName="Elevation" setInputObj={setInputObj}/>
-                </div>
-            )}
+            {/* Lets us choose if we want environment or not */}
+            <ToggleOption show = {true} inputName="Set Environment" setInputObj={setInputObj}/>
+            {/* Only show this stuff if environment variable set */}
+            <InputNumber show={inputObj["Set Environment"]} inputName="Latitude" setInputObj={setInputObj}/>
+            <InputNumber show={inputObj["Set Environment"]} inputName="Longitude" setInputObj={setInputObj}/>
+            <InputNumber show={inputObj["Set Environment"]} inputName="Elevation" setInputObj={setInputObj}/>
+            <ToggleOption show={inputObj["Set Environment"]} inputName="Set Temp" setInputObj={setInputObj}/>
+            <ToggleOption show={inputObj["Set Environment"]} inputName="Set Pressure" setInputObj={setInputObj}/>
+            <InputNumber show={inputObj["Set Temp"] && inputObj["Set Environment"]} inputName="Temperature" setInputObj={setInputObj}/>
+            <InputNumber show={inputObj["Set Pressure"]  && inputObj["Set Environment"]} inputName="Pressure" setInputObj={setInputObj}/>
+            <ToggleOption show={inputObj["Set Environment"]} inputName="Set Date" setInputObj={setInputObj}/>
+            <DateGetter show={inputObj["Set Environment"] && inputObj["Set Date"]} inputName="Date" setInputObj={setInputObj}/>
         </div>
     )
 }
