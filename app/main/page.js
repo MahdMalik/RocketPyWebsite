@@ -68,7 +68,7 @@ export default function Home() {
         </SignedIn>
       {/* If signed out, don't want user here, send them back.*/}
       <SignedOut><Logout/></SignedOut>
-      <FlightInput/>
+      <FlightInput />
       
       {/* <Stack direction="row" spacing = {2}>
         <div></div>

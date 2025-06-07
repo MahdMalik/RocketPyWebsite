@@ -1,28 +1,15 @@
 import { useEffect, useState } from "react"
-import InputNumber from "./InputNumber"
-import ToggleOption from "./ToggleOption"
-import DateGetter from "./DateGetter";
+import EnvInput from "./EnvInput"
 
-const FlightInput = () => {
-    const [inputObj, setInputObj] = useState({})
+const SimpleFlight = () => {
+    const [envInput, setEnvInput] = useState({})
 
     
     return (
         <div>
-            {/* Lets us choose if we want environment or not */}
-            <ToggleOption show = {true} inputName="Set Environment" setInputObj={setInputObj}/>
-            {/* Only show this stuff if environment variable set */}
-            <InputNumber show={inputObj["Set Environment"]} inputName="Latitude" setInputObj={setInputObj}/>
-            <InputNumber show={inputObj["Set Environment"]} inputName="Longitude" setInputObj={setInputObj}/>
-            <InputNumber show={inputObj["Set Environment"]} inputName="Elevation" setInputObj={setInputObj}/>
-            <ToggleOption show={inputObj["Set Environment"]} inputName="Set Temp" setInputObj={setInputObj}/>
-            <ToggleOption show={inputObj["Set Environment"]} inputName="Set Pressure" setInputObj={setInputObj}/>
-            <InputNumber show={inputObj["Set Temp"] && inputObj["Set Environment"]} inputName="Temperature" setInputObj={setInputObj}/>
-            <InputNumber show={inputObj["Set Pressure"]  && inputObj["Set Environment"]} inputName="Pressure" setInputObj={setInputObj}/>
-            <ToggleOption show={inputObj["Set Environment"]} inputName="Set Date" setInputObj={setInputObj}/>
-            <DateGetter show={inputObj["Set Environment"] && inputObj["Set Date"]} inputName="Date" setInputObj={setInputObj}/>
+            <EnvInput setInput={setEnvInput}/>
         </div>
     )
 }
 
-export default FlightInput
+export default SimpleFlight
