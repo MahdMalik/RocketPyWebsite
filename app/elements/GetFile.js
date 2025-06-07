@@ -1,8 +1,10 @@
 import { useState } from "react"
 import { Stack, Button, TextField } from "@mui/material"
 import axios from "axios"
+import { useRef } from "react"
 
 const GetFile = ({inputName, setUploaded}) => {
+    const fileRef = useRef(null)
 
     function setParentComponent(bool) {
         setUploaded((prev) => {
@@ -18,6 +20,7 @@ const GetFile = ({inputName, setUploaded}) => {
         {
             alert("Unable to open file.")
             setParentComponent(false)
+            fileRef.current.value = ""
             return
         }
 
@@ -27,18 +30,22 @@ const GetFile = ({inputName, setUploaded}) => {
         {
             alert("Provided incorrect file type. Only give .env or .csv files")
             setParentComponent(false)
+            fileRef.current.value = ""
             return
         }
 
+        //have to do this apparently and encode it this way before sending it
         const fileData = new FormData()
         fileData.append("file", file)
 
         const response = await axios.post("/api/file-upload", fileData)
         const result = response.data
+        //if response failed, notify them and make sure clear that it failed
         if(!result.success)
         {
             alert("Reading the file failed!")
             setParentComponent(false)
+            fileRef.current.value = ""
             return
         }
 
@@ -49,9 +56,7 @@ const GetFile = ({inputName, setUploaded}) => {
     return (
         <div>
             <p>{inputName}</p>
-            <label>Upload File
-                <input type="file" accept=".csv, .eng" onChange={storeFile}/>
-            </label>
+            <input type="file" accept=".csv, .eng" onChange={storeFile} ref={fileRef}/>
         </div>
     )
 }
