@@ -2,6 +2,7 @@ import { useEffect, useState } from "react"
 import InputNumber from "./InputNumber"
 import ToggleOption from "./ToggleOption"
 import DateGetter from "./DateGetter";
+import { Stack } from "@mui/material";
 
 const EnvInput = ({setInput}) => {
     const [inputObj, setInputObj] = useState({})
@@ -11,7 +12,7 @@ const EnvInput = ({setInput}) => {
     }, inputObj)
     
     return (
-        <div>
+        <Stack direction="column" alignItems="center" spacing = {1}>
             {/* Lets us choose if we want environment or not */}
             <ToggleOption show = {true} inputName="Set Environment" setInputObj={setInputObj}/>
             {/* Only show this stuff if environment variable set */}
@@ -24,7 +25,7 @@ const EnvInput = ({setInput}) => {
             <InputNumber show={inputObj["Set Pressure"]  && inputObj["Set Environment"]} inputName="Pressure" setInputObj={setInputObj}/>
             <ToggleOption show={inputObj["Set Environment"]} inputName="Set Date" setInputObj={setInputObj}/>
             <DateGetter show={inputObj["Set Environment"] && inputObj["Set Date"]} inputName="Date" setInputObj={setInputObj}/>
-        </div>
+        </Stack>
     )
 }
 

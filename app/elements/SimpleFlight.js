@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import EnvInput from "./EnvInput"
 import MotorInput from "./MotorInput"
+import { Stack } from "@mui/material"
 
 const SimpleFlight = () => {
     const [envInput, setEnvInput] = useState({})
@@ -8,10 +9,10 @@ const SimpleFlight = () => {
 
     
     return (
-        <div>
+        <Stack direction="column" alignItems="center" spacing = {1}>
             <EnvInput setInput={setEnvInput}/>
             <MotorInput setInput={setMotorInput}/>
-        </div>
+        </Stack>
     )
 }
 

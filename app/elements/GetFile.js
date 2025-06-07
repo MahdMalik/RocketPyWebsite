@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { Stack, Button, TextField } from "@mui/material"
+import { Stack, Button, TextField, Typography } from "@mui/material"
 import axios from "axios"
 import { useRef } from "react"
 
@@ -55,8 +55,10 @@ const GetFile = ({inputName, setUploaded}) => {
 
     return (
         <div>
-            <p>{inputName}</p>
-            <input type="file" accept=".csv, .eng" onChange={storeFile} ref={fileRef}/>
+            <Stack direction="row" alignItems="center" spacing = {2}>
+                <Typography>{inputName}</Typography>
+                <input type="file" accept=".csv, .eng" onChange={storeFile} ref={fileRef}/>
+            </Stack>
         </div>
     )
 }

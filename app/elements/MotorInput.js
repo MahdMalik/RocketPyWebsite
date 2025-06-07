@@ -3,6 +3,7 @@ import InputNumber from "./InputNumber"
 import ToggleOption from "./ToggleOption"
 import DateGetter from "./DateGetter";
 import GetFile from "./GetFile";
+import { Stack } from "@mui/material";
 
 const MotorInput = ({setInput}) => {
     const [inputObj, setInputObj] = useState({})
@@ -12,9 +13,10 @@ const MotorInput = ({setInput}) => {
     }, inputObj)
     
     return (
-        <div>
+        <Stack direction="column" alignItems="center" spacing = {1}>
             <GetFile inputName="Thrust Curve" setUploaded={setInputObj}/>
-        </div>
+            <InputNumber show={true} inputName="Motor Dry Mass" setInputObj={setInputObj}/>
+        </Stack>
     )
 }
 

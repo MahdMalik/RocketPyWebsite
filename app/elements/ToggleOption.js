@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { Stack, Button, TextField, Switch } from "@mui/material"
+import { Stack, Button, TextField, Switch, Typography } from "@mui/material"
 
 const ToggleOption = ({show, inputName, setInputObj}) => {
     const [value, setValue] = useState(false)
@@ -8,8 +8,8 @@ const ToggleOption = ({show, inputName, setInputObj}) => {
     return (
         <div>
             {show ? 
-                (<Stack direction="row" spacing = {2}>
-                    <p>{inputName}</p>
+                (<Stack direction="row" alignItems="center" spacing = {2}>
+                    <Typography>{inputName}</Typography>
                     <Switch
                         checked={value}
                         onChange={(e) => {

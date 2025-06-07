@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { Stack, Button, TextField } from "@mui/material"
+import { Stack, Button, TextField, Typography } from "@mui/material"
 import DatePicker from "react-datepicker"
 import "react-datepicker/dist/react-datepicker.css";
 
@@ -9,8 +9,8 @@ const DateGetter = ({show, inputName, setInputObj}) => {
     return (
         <div>
           {show ? (
-            <Stack direction="row" spacing = {2}>
-              <p>{inputName}</p>
+            <Stack direction="row" alignItems="center" spacing = {2}>
+              <Typography>{inputName}</Typography>
               <DatePicker 
                 selected={value} 
                 showYearDropdown 
