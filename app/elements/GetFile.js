@@ -1,5 +1,6 @@
 import { useState } from "react"
 import { Stack, Button, TextField } from "@mui/material"
+import axios from "axios"
 
 const GetFile = ({inputName, setUploaded}) => {
 
@@ -29,6 +30,19 @@ const GetFile = ({inputName, setUploaded}) => {
             return
         }
 
+        const fileData = new FormData()
+        fileData.append("file", file)
+
+        const response = await axios.post("/api/file-upload", fileData)
+        const result = response.data
+        if(!result.success)
+        {
+            alert("Reading the file failed!")
+            setParentComponent(false)
+            return
+        }
+
+        console.log("File upload success! Stored at: " + result.path)
         setParentComponent(true)
     }
 

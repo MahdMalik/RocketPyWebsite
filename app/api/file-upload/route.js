@@ -5,36 +5,38 @@ import os from "os";
 import fs from "fs";
 
 export async function POST(req) {
-  return new Promise((resolve, reject) => {
-    const busboy = Busboy({ headers: req.headers });
+    return new Promise((resolve, reject) => {
+        //apparently the headers are not in an object format, they need to converted that way first
+        const headers = Object.fromEntries(req.headers)
+        const busboy = Busboy({ headers: headers });
 
-    let filePath = null;
+        let filePath = null;
 
-    busboy.on("file", (fieldname, file, filename) => {
-      const tempPath = path.join(os.tmpdir(), filename);
-      filePath = tempPath;
+        //when receiving the file, begin doing stuff
 
-      file.pipe(fs.createWriteStream(tempPath));
-    });
+        busboy.on("file", (fieldname, file, info) => {
+            //the third argument is going to be an object that just happens to hold the filename, we need to extract it this way 
+            const filename = info.filename
+            const tempPath = path.join(os.tmpdir(), filename);
+            filePath = tempPath;
 
-    busboy.on("finish", () => {
-      resolve(
-        new Response(
-          JSON.stringify({ success: true, path: filePath }),
-          { status: 200 }
-        )
-      );
-    });
+            file.pipe(fs.createWriteStream(tempPath));
+        });
 
-    busboy.on("error", (err) => {
-      reject(new Response(JSON.stringify({success: false}), { status: 500 }));
-    });
+        busboy.on("finish", () => {
+            resolve(new Response(JSON.stringify({ success: true, path: filePath})));
+        });
 
-    req.body
-      .getReader()
-      .read()
-      .then(({ value }) => {
-        busboy.end(value);
-      });
+        busboy.on("error", (err) => {
+            reject(new Response(JSON.stringify({success: false})));
+        });
+
+        //actually does the reading
+        req.body
+        .getReader()
+        .read()
+        .then(({ value }) => {
+            busboy.end(value);
+        });
   });
 }
