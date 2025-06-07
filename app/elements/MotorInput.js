@@ -16,6 +16,7 @@ const MotorInput = ({setInput}) => {
         <Stack direction="column" alignItems="center" spacing = {1}>
             <GetFile inputName="Thrust Curve" setUploaded={setInputObj}/>
             <InputNumber show={true} inputName="Motor Dry Mass" setInputObj={setInputObj}/>
+            <InputNumber show={true} inputName="Inertia I11 + I22" setInputObj={setInputObj}></InputNumber>
         </Stack>
     )
 }
