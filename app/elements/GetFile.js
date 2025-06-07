@@ -6,9 +6,9 @@ import { useRef } from "react"
 const GetFile = ({inputName, setUploaded}) => {
     const fileRef = useRef(null)
 
-    function setParentComponent(bool) {
+    function setParentComponent(bool, fileName) {
         setUploaded((prev) => {
-            return {...prev, [inputName]: bool}
+            return {...prev, [inputName]: [bool, fileName]}
         })
     }
     
@@ -19,7 +19,7 @@ const GetFile = ({inputName, setUploaded}) => {
         if(!file)
         {
             alert("Unable to open file.")
-            setParentComponent(false)
+            setParentComponent(false, null)
             fileRef.current.value = ""
             return
         }
@@ -29,7 +29,7 @@ const GetFile = ({inputName, setUploaded}) => {
         if(extension != "csv" && extension != "eng")
         {
             alert("Provided incorrect file type. Only give .env or .csv files")
-            setParentComponent(false)
+            setParentComponent(false, null)
             fileRef.current.value = ""
             return
         }
@@ -44,13 +44,13 @@ const GetFile = ({inputName, setUploaded}) => {
         if(!result.success)
         {
             alert("Reading the file failed!")
-            setParentComponent(false)
+            setParentComponent(false, null)
             fileRef.current.value = ""
             return
         }
 
         console.log("File upload success! Stored at: " + result.path)
-        setParentComponent(true)
+        setParentComponent(true, file.name)
     }
 
     return (
