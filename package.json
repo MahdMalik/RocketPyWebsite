@@ -13,6 +13,7 @@
     "@clerk/nextjs": "^6.20.2",
     "@clerk/shared": "^3.9.5",
     "mongodb": "^6.16.0",
+    "multer": "^2.0.1",
     "next": "^15.2.3",
     "react": "^19.0.0",
     "react-datepicker": "^8.4.0",
