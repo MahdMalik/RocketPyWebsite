@@ -5,7 +5,7 @@ const GetFile = ({inputName, setUploaded}) => {
 
     function setParentComponent(bool) {
         setUploaded((prev) => {
-            return {...prev, ["Thrust Curve Uploaded"]: bool}
+            return {...prev, [inputName]: bool}
         })
     }
     
