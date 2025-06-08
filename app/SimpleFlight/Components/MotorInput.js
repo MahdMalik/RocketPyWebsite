@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
-import InputNumber from "./InputNumber"
-import SelectFromOptions from "./SelectFromOptions";
-import GetFile from "./GetFile";
+import InputNumber from "@/app/inputs/InputNumber";
+import SelectFromOptions from "@/app/inputs/SelectFromOptions";
+import GetFile from "@/app/inputs/GetFile";
 import { Stack } from "@mui/material";
 
 const MotorInput = ({setInput}) => {

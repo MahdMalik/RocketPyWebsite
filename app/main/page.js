@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { SignedIn, UserButton, SignedOut, useUser, getToken, useAuth } from "@clerk/nextjs";
 import { Logout, useRouting } from "../elements/routing";
-import FlightInput from "../elements/SimpleFlight";
+import FlightInput from "../SimpleFlight/SimpleFlight";
 
 export default function Home() {
   const [latitude, setLat] = useState(0)

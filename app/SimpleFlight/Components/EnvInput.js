@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
-import InputNumber from "./InputNumber"
-import ToggleOption from "./ToggleOption"
-import DateGetter from "./DateGetter";
+import InputNumber from "@/app/inputs/InputNumber";
+import ToggleOption from "@/app/inputs/ToggleOption";
+import DateGetter from "@/app/inputs/DateGetter";
 import { Stack } from "@mui/material";
 
 const EnvInput = ({setInput}) => {
